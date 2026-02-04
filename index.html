@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purrfessor - Liquid Cat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- The Liquid Cat -->
+    <div id="cat-container" class="cat-container">
+        <svg class="cat-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+            <g id="cat-body">
+                <!-- Tail -->
+                <g id="tail">
+                    <path d="M140,120 Q160,90 145,60" fill="none" stroke="#1a1a1a" stroke-width="14"
+                        stroke-linecap="round" />
+                </g>
+
+                <!-- Main Body Blob -->
+                <ellipse id="body-blob" cx="90" cy="120" rx="55" ry="40" fill="#1a1a1a" />
+
+                <!-- Legs (Simple Paws) -->
+                <g id="legs">
+                    <ellipse class="paw back-left" cx="60" cy="150" rx="10" ry="8" fill="#1a1a1a" />
+                    <ellipse class="paw back-right" cx="120" cy="150" rx="10" ry="8" fill="#1a1a1a" />
+                    <ellipse class="paw front-left" cx="70" cy="155" rx="9" ry="7" fill="#1a1a1a" />
+                    <ellipse class="paw front-right" cx="110" cy="155" rx="9" ry="7" fill="#1a1a1a" />
+                </g>
+
+                <!-- Head -->
+                <g id="head">
+                    <!-- Face -->
+                    <circle cx="90" cy="80" r="45" fill="#1a1a1a" />
+
+                    <!-- Ears -->
+                    <path class="ear left" d="M55,55 L40,25 L65,50 Z" fill="#1a1a1a" />
+                    <path class="ear right" d="M125,55 L140,25 L115,50 Z" fill="#1a1a1a" />
+                    <path class="ear-inner left" d="M57,52 L46,32 L67,52 Z" fill="#ffb7b2" />
+                    <path class="ear-inner right" d="M123,52 L134,32 L113,52 Z" fill="#ffb7b2" />
+
+                    <!-- Eyes -->
+                    <ellipse class="eye left" cx="70" cy="75" rx="13" ry="16" fill="#fff" />
+                    <ellipse class="pupil left" cx="70" cy="75" rx="6" ry="12" fill="#000" />
+
+                    <ellipse class="eye right" cx="110" cy="75" rx="13" ry="16" fill="#fff" />
+                    <ellipse class="pupil right" cx="110" cy="75" rx="6" ry="12" fill="#000" />
+
+                    <!-- Nose -->
+                    <polygon points="85,90 95,90 90,96" fill="#ffb7b2" />
+
+                    <!-- Mouth -->
+                    <path d="M90,96 Q80,105 70,98 M90,96 Q100,105 110,98" fill="none" stroke="#fff" stroke-width="2.5"
+                        stroke-linecap="round" />
+
+                    <!-- Whiskers -->
+                    <g class="whiskers" stroke="#fff" stroke-width="1.5" opacity="0.7">
+                        <line x1="50" y1="85" x2="15" y2="80" />
+                        <line x1="50" y1="92" x2="10" y2="95" />
+                        <line x1="130" y1="85" x2="165" y2="80" />
+                        <line x1="130" y1="92" x2="170" y2="95" />
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+        <!-- Reactions -->
+        <div id="reaction" class="reaction"></div>
+    </div>
+
+    <!-- Props -->
+    <div id="prop" class="prop"></div>
+
+    <!-- UI -->
+    <div class="ui-container">
+        <div class="dialogue-box">
+            <p id="dialogue">Ready for chaos! 🐱</p>
+        </div>
+        <div class="controls">
+            <button id="btn-laugh" class="btn">Make Me Laugh</button>
+            <button id="btn-praise" class="btn">Praise Me</button>
+            <button id="btn-quote" class="btn">Purrfessor</button>
+            <button id="btn-surprise" class="btn action">Surprise Me</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

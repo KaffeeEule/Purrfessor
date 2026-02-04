@@ -1,0 +1,308 @@
+:root {
+    --bg: #ffffff;
+    --text: #333;
+    --accent: #ff7675;
+    --btn-bg: #f8f9fa;
+    --font-primary: 'Nunito', sans-serif;
+    --font-heading: 'Fredoka', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-image: url('C:/Users/Mascha/.gemini/antigravity/brain/3e109f38-ec0a-40c6-b25f-f766b0be2406/cartoon_cat_street_1770202423758.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* UI */
+.ui-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 550px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.dialogue-box,
+.controls {
+    pointer-events: auto;
+}
+
+.dialogue-box {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+#dialogue {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: 1px solid #ddd;
+    background: var(--btn-bg);
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.btn:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.btn.action {
+    background: var(--accent);
+    color: white;
+    border: none;
+}
+
+/* === CAT PHYSICS === */
+
+.cat-container {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e0e0;
+    border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+}
+
+.cat-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Squash & Stretch applied by JS */
+#cat-body {
+    transform-origin: center;
+    transition: transform 0.1s ease-out;
+}
+
+/* === STATES === */
+
+/* LOAF - Paws hidden, compact */
+.cat-container.loaf #legs {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.cat-container.loaf #body-blob {
+    ry: 50;
+    transition: ry 0.8s;
+}
+
+/* SPLOOT - Stretched flat */
+.cat-container.sploot #body-blob {
+    rx: 70;
+    ry: 25;
+    transition: all 0.8s;
+}
+
+.cat-container.sploot .paw {
+    opacity: 0.3;
+}
+
+/* ROACH - Upside down wiggling */
+.cat-container.roach {
+    animation: roachWiggle 0.4s infinite;
+}
+
+.cat-container.roach #cat-body {
+    transform: rotate(180deg);
+}
+
+.cat-container.roach #legs {
+    animation: pawWiggle 0.3s infinite;
+}
+
+@keyframes roachWiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes pawWiggle {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* STARTLE - Jump */
+.cat-container.startle {
+    animation: startleJump 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes startleJump {
+    0% {
+        transform: translateY(0) scaleY(1);
+    }
+
+    30% {
+        transform: translateY(-80px) scaleY(1.2) scaleX(0.8);
+    }
+
+    100% {
+        transform: translateY(0) scaleY(0.8) scaleX(1.2);
+    }
+}
+
+/* ZOOMIES - Enhanced walk */
+.cat-container.zoomies #cat-body {
+    animation: zoomBounce 0.15s infinite;
+}
+
+@keyframes zoomBounce {
+
+    0%,
+    100% {
+        transform: scaleY(1.1) scaleX(0.9);
+    }
+
+    50% {
+        transform: scaleY(0.9) scaleX(1.1);
+    }
+}
+
+/* Tail wag */
+#tail {
+    transform-origin: 140px 120px;
+    animation: tailWag 2s infinite ease-in-out;
+}
+
+@keyframes tailWag {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+}
+
+.cat-container.zoomies #tail {
+    animation: tailZoom 0.1s infinite;
+}
+
+@keyframes tailZoom {
+
+    0%,
+    100% {
+        transform: rotate(-30deg);
+    }
+
+    50% {
+        transform: rotate(30deg);
+    }
+}
+
+/* Blink */
+.eye {
+    animation: blink 4s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    96%,
+    100% {
+        ry: 16;
+    }
+
+    98% {
+        ry: 2;
+    }
+}
+
+/* Elevator Butt */
+.cat-container.elevator-butt #head {
+    transform: translateY(15px);
+    transition: transform 0.3s;
+}
+
+.cat-container.elevator-butt #body-blob {
+    transform: translateY(-10px);
+    animation: buttWiggle 0.4s infinite;
+}
+
+@keyframes buttWiggle {
+
+    0%,
+    100% {
+        transform: translateY(-10px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+}
+
+/* Props */
+.prop {
+    position: fixed;
+    font-size: 3rem;
+    display: none;
+    z-index: 500;
+}
+
+/* Reaction */
+.reaction {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    pointer-events: none;
+}
