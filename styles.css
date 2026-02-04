@@ -15,7 +15,7 @@
 
 body {
     font-family: var(--font-primary);
-    background-image: url('C:/Users/Mascha/.gemini/antigravity/brain/3e109f38-ec0a-40c6-b25f-f766b0be2406/cartoon_cat_street_1770202423758.png');
+    background-image: url('assets/background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
